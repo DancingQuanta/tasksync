@@ -29,6 +29,13 @@ from oauth2client.file import Storage
 
 logger = logging.getLogger(__name__)
 
+try:
+    import argparse
+    flags = argparse.ArgumentParser(parents=[
+        oauth2client.tools.argparser]).parse_args()
+except ImportError:
+    flags = None
+
 class GoogleTask(tasksync.Task, tasksync.UpstreamTask):
     """ Implementation for Google Tasks. """
 
@@ -230,7 +237,7 @@ class ApiClient(object):
         storage = Storage(kwargs['credential_storage'])
         credentials = storage.get()
         if credentials is None or credentials.invalid:
-            credentials = oauth2client.tools.run(flow, storage)
+            credentials = oauth2client.tools.run_flow(flow, storage, flags)
         return credentials
 
     def tasklists(self, method):
