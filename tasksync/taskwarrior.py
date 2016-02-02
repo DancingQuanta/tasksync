@@ -151,7 +151,7 @@ class TaskWarriorTask(tasksync.Task, tasksync.DownstreamTask):
     def __parse_date(self, as_string):
         if as_string is None:
             return None
-        return datetime.fromtimestamp(int(as_string))
+        return datetime..strptime(as_string,'%Y%m%dT%H%M%S%fZ')
 
     def __format_date(self, as_timestamp):
         return datetime.strftime(as_timestamp, '%s')
