@@ -17,8 +17,9 @@ setup(
 
         install_requires=[
             'google-api-python-client>=1.0',
-            'httplib2>=0.8',
-            'taskw==0.5.1'],
+            'httplib2>=0.8'],
+        # install taskw by pip (is recommended inside a virutalenv
+        # pip install taskw
 
         dependency_links = [
             'https://github.com/burnison/taskw/tarball/completed_task_inclusion#egg=taskw-0.5.1'],
